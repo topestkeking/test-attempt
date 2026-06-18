@@ -1,47 +1,31 @@
-# THE ULTIMATE MASTER FRAMEWORK: Project "Wasteland MCP"
+# THE "CARS & CANNONS" MASTER FRAMEWORK
 
-This document is the result of 10 iterative refinement cycles. It consolidates the 23+ roles into 3 "Action Streams" tailored for a 2-person team using Claude Code as a force multiplier.
+This is the "Fun-First" iteration of our UE 5.8 development strategy. We are making a competitive PvP game about building the most badass car with the biggest guns.
 
-## 1. Action Stream A: The Core Engine (Physics & Systems)
-*Combines: Physics, Modular Systems, Network, Combat, Optimization.*
+## 1. The Core Loop: Build -> Battle -> Scrap
+1. **Build:** Infinite combinations of blocks, frames, and weapons.
+2. **Battle:** High-speed 5v5 or FFA matches in grimy wasteland arenas.
+3. **Scrap:** Earn currency to unlock bigger guns and weirder parts.
 
-### The "Golden Rule" of Scaling
-To ensure competitive balance with freeform resizing, use the **Cubic Mass Law**:
-- `Mass = Base_Mass * (Scale^3)`
-- `Engine_Power_Req = Base_Power * (Scale^2)`
-- This ensures that as parts get bigger, they get significantly heavier, requiring more wheels/engines, preventing "giant tank" dominance without trade-offs.
+## 2. Streamlined Action Streams (For the 2-Person Team)
 
-### The "Snapshot" Replication
-Instead of replicating 100+ part transforms, replicate a **Single Bitmask** of the vehicle's state and use the client-side "Build Reconstruction" to render the mesh. This is the only way to achieve "AAA++" performance in 16-player physics battles.
+### Stream A: "The Mechanical Heart"
+- Focus: Making the car driving feel "snappy" and the turrets feel "powerful."
+- Goal: Create a standard `BP_Vehicle_Base` that handles resizing without breaking the fun.
 
-## 2. Action Stream B: The World & Aesthetic (Art & Narrative)
-*Combines: Tech Art, Environment, VFX, Lighting, Audio, Narrative.*
+### Stream B: "The Grimy Wasteland"
+- Focus: Mad Max aesthetic. Rust, scrap, and dust.
+- Goal: Use PCG to make arenas that look AAA+++ but are optimized for 60fps combat.
 
-### The "Substrate-Rust" Workflow
-Use a single **Master Material Stack** in UE 5.8 Substrate.
-- **AI Task:** Instead of making 100 materials, the AI uses a script to "Randomize Rust Seed" on every part during the spawn phase. This creates infinite visual variety with 0 extra memory cost.
+### Stream C: "The Matchmaker"
+- Focus: Getting players into games and saving their custom builds.
+- Goal: A clean, easy-to-use Garage UI and stable server networking.
 
-### PCG-V2 Logic
-Use "Bi-Directional PCG": The terrain reacts to the vehicle paths. High-traffic areas on the map dynamically swap to "Dusty" or "Muddy" textures using Runtime Virtual Textures (RVT).
+## 3. Simplified MCP Workflow
+The AI (Claude) is your "Technical Assistant."
+- **Task:** *"Claude, add a swivel-turret to this Cabin and make sure it auto-aims at the nearest Target Drone."*
+- **Task:** *"Claude, make this engine sound louder and more 'growly' as the car speeds up."*
 
-## 3. Action Stream C: The Platform (UI, Backend, Economy, QA)
-*Combines: UI/UX, Backend, Economy, QA, Localization, Legal.*
-
-### The "AI-QA" Loop
-The Testing Arena is now an **Automated Headless Client**.
-- Every time you save a vehicle blueprint, the AI spawns it in a "hidden" arena, runs it through a 30-second physics stress test, and returns a "Stability Score" (0-100) to the player.
-
-## 4. Enhanced MCP Tooling (The "Hands" of the AI)
-We move beyond prompts to **Custom JSON-RPC Tools** in UE 5.8:
-
-| Tool Name | Action | Result |
-| :--- | :--- | :--- |
-| `Sync_Vehicle_Physics` | Recalculates CoM and Inertia Tensor. | Returns a `Physics_Stability_Report`. |
-| `Auto_Weld_Sockets` | Snaps all nearby parts to the nearest grid. | Returns `Weld_Success_Boolean`. |
-| `Apply_Aesthetic_Wear` | Procedurally adds rust/scratches via Vertex Paint. | Returns `Visual_Delta_Map`. |
-| `Analyze_Network_Cost` | Measures the replication bit-rate of a build. | Returns `Bandwidth_KBps`. |
-
-## 5. Implementation Roadmap (The 3-Month Vertical Slice)
-- **Month 1:** The "Builder" & Physics Root (Action Stream A).
-- **Month 2:** The "Arena" & Core Combat (Action Stream B + A).
-- **Month 3:** The "Economy" & Multiplayer Sync (Action Stream C).
+## 4. The Competitive Standard
+- **Power Score (PS):** The only stat that matters for matchmaking. Each gun and block adds to the PS.
+- **Fair Play:** No "impossible" physics. If it has 4 wheels and a motor, it drives. If it has a gun, it shoots.

@@ -1,48 +1,28 @@
-# Technical Deep-Dive: Physics of Modular Freeform Vehicles
+# "Cars & Cannons" Physics: The Fun-First Approach
 
-Handling "Minecraft-style" building in a competitive physics game like *Crossout* requires a sophisticated approach to mass, balance, and the Chaos Vehicle solver.
+In our game, physics serves the **Gameplay**, not the other way around. We aren't building a simulator; we're building a high-octane PvP arena where cars with gun turrets blow each other up.
 
-## 1. The Core Architecture: The "Compound Body"
+## 1. The "Arcade-Competitive" Model
+Instead of literal mass calculations, we use **Weight Classes**:
+- **Light:** Fast, fragile, high acceleration. (e.g., Buggies)
+- **Medium:** Balanced, the "standard" combat vehicle.
+- **Heavy:** Slow, tank-like, can carry the biggest guns.
 
-In UE 5.8, we do not want 200 separate actors simulating physics. Instead:
-1. **The Cabin is the Root:** All parts are attached to the Cabin.
-2. **Merge on Build:** When the player leaves the "Garage," we merge all static parts into a single **Physics Body**.
-3. **Chaos Clusters:** Use Chaos Clustering to allow parts to break off. When a part's health reaches zero, it is "un-clustered" and becomes its own physics actor (scrap).
+## 2. Scaling for Fun
+When a player resizes a part:
+- **Don't** worry about cubic mass laws.
+- **Do** adjust the part's health and its "Weight Class Impact."
+- **Center of Mass (CoM):** Keep the CoM artificially low for all vehicles. This prevents frustrating rollovers and keeps the focus on driving and shooting.
 
-## 2. Dynamic Scaling & Inertia Tensors
+## 3. The Chaos Vehicle Setup
+- **Suspension:** Set to "Stiff & Responsive." We want the cars to feel grounded but capable of huge jumps.
+- **Tire Friction:** High grip on most surfaces. Drifting should be a conscious player choice, not a constant struggle.
+- **Simplified Aero:** Constant top speed caps based on Engine power, ignoring complex drag math.
 
-Since you want **Resizing**, we must recalculate the vehicle's physical properties at runtime:
+## 4. Competitive Combat Physics
+- **Impact Impulses:** When a cannon hits a car, it should *push* the car. This adds "Juice" and allows for tactical knockbacks.
+- **Part Detachment:** Parts fly off with exaggerated velocity when destroyed. It should look spectacular.
+- **Fixed Turret Stability:** Weapons do not affect vehicle physics when they rotate or fire, unless we explicitly want a "Recoil" mechanic for heavy cannons.
 
-### Mass Calculation
-- Each part has a `BaseMass`.
-- `PartMass = BaseMass * (Scale.X * Scale.Y * Scale.Z)`.
-- `TotalMass = Sum(PartMass)`.
-
-### Center of Mass (CoM)
-- This is the most critical factor for "Competitive Feel."
-- **Calculation:** `CoM = Sum(PartMass * LocalOffset) / TotalMass`.
-- **Gameplay Effect:** If the CoM is too high, the vehicle will flip in turns. If it's too far back, the front wheels will lose traction.
-
-### Inertia Tensor
-- The Inertia Tensor defines how hard it is to rotate the vehicle.
-- Scaling a part up increases its inertia significantly.
-- **AI Task:** Ask the MCP AI to *"Recalculate the Inertia Tensor for the current BP_Vehicle_Base based on its component bounds."*
-
-## 3. The "Chaos Vehicle" Constraint
-
-The Chaos Vehicle component expects a specific bone structure. For a modular game:
-- **Virtual Bones:** We must dynamically assign "Wheels" to the Chaos Vehicle component.
-- **Suspension Tuning:** Scaling a vehicle up requires increasing the `SuspensionMaxForce`. If you double the size/mass, the springs must be twice as stiff.
-
-## 4. Competitive Balance (The "Meta")
-
-To keep it fair:
-- **Drag Coefficient:** Larger vehicles should have higher aerodynamic drag.
-- **Power-to-Weight Ratio:** The Engine provides a fixed `Torque`. As players add more armor (mass), the top speed and acceleration must decrease linearly.
-- **Scaling Limits:** We should cap resizing to prevent "Invisible" (too small) or "Map-Breaking" (too large) vehicles.
-
-## 5. Network Reconciliation
-
-- **The Server is the Source of Truth:** The server calculates the "Clustered Physics."
-- **Client Prediction:** The client predicts where the vehicle *should* be. If a part falls off, the client might show it a frame early, but the server confirms the "Detachment" event.
-- **Bandwidth Optimization:** Do not replicate the scale of every part every frame. Scale is only sent once during the "Vehicle Load" phase.
+## 5. AI Prompting for Feel
+*"Adjust the vehicle's turn rate to feel snappier. Increase the tire friction by 20% and lower the center of mass so it feels like it's glued to the road during high-speed combat."*
