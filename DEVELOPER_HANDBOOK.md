@@ -46,8 +46,9 @@ We organize our work into three parallel tracks:
 ---
 
 ## 5. Your First 24 Hours: Onboarding Checklist
-1. [ ] **Bootstrap the Engine:** Follow the **[PROJECT_BOOTSTRAP_GUIDE.md](PROJECT_BOOTSTRAP_GUIDE.md)** to set up the C++ Vehicle Template.
-2. [ ] **Connect Claude:** Run `claude config add-mcp` as detailed in `MCP_AI_Setup_Guide.md`.
+1. [ ] **Hardware & Software:** Complete the **[TECHNICAL_INSTALLATION_CHECKLIST.md](TECHNICAL_INSTALLATION_CHECKLIST.md)**.
+2. [ ] **Bootstrap the Engine:** Follow the **[PROJECT_BOOTSTRAP_GUIDE.md](PROJECT_BOOTSTRAP_GUIDE.md)** to set up the C++ Vehicle Template.
+3. [ ] **Connect Claude:** Run `claude config add-mcp` as detailed in `MCP_AI_Setup_Guide.md`.
 3. [ ] **Enter the Garage:** Load the `L_Garage_Hub` level. Spend time with the snapping logic.
 4. [ ] **The Gauntlet Run:** Load `L_Testing_Arena` and spawn a default vehicle. Ensure driving and shooting feels "snappy."
 5. [ ] **First AI Task:** Pick a "Grimy" asset and ask Claude to create 3 material variants using the Substrate Master Material.
