@@ -12,6 +12,7 @@ For a full list of all guides and the "headspace" required for each, see the **[
 
 ## 📂 Key Documentation
 
+- **[PROJECT_BOOTSTRAP_GUIDE.md](PROJECT_BOOTSTRAP_GUIDE.md)**: **Start Here.** How to create the UE 5.8 project (C++ vs. Blueprint).
 - **[DEVELOPER_HANDBOOK.md](DEVELOPER_HANDBOOK.md)**: The definitive guide to our workflow, vision, and first-day checklist.
 - **[MCP_AI_Setup_Guide.md](MCP_AI_Setup_Guide.md)**: How to connect your local AI agent (Claude Code) to the Unreal Editor.
 - **[Physics_Deep_Dive.md](Physics_Deep_Dive.md)**: Our "Fun-First" arcade-competitive physics model.
