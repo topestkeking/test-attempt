@@ -1,28 +1,24 @@
-# "Cars & Cannons" Physics: The Fun-First Approach
+# Physics: Leveraging the Unreal Car Template
 
-In our game, physics serves the **Gameplay**, not the other way around. We aren't building a simulator; we're building a high-octane PvP arena where cars with gun turrets blow each other up.
+We are using the **Unreal Engine 5.8 Vehicle Template** as our foundation. We don't need custom physics code; we will simply configure what the engine already provides.
 
-## 1. The "Arcade-Competitive" Model
-Instead of literal mass calculations, we use **Weight Classes**:
-- **Light:** Fast, fragile, high acceleration. (e.g., Buggies)
-- **Medium:** Balanced, the "standard" combat vehicle.
-- **Heavy:** Slow, tank-like, can carry the biggest guns.
+## 1. The Chaos Vehicle Component
+Every vehicle in the game is an instance of the `WheeledVehiclePawn` class.
+- **Physics:** Handled automatically by the **Chaos Vehicle Movement Component**.
+- **The "Feel":** Adjusted via the standard `Torque Curve`, `Steering Curve`, and `Suspension` settings in the Blueprint editor.
 
-## 2. Scaling for Fun
-When a player resizes a part:
-- **Don't** worry about cubic mass laws.
-- **Do** adjust the part's health and its "Weight Class Impact."
-- **Center of Mass (CoM):** Keep the CoM artificially low for all vehicles. This prevents frustrating rollovers and keeps the focus on driving and shooting.
+## 2. Attaching "Junk" Parts
+We use Unreal's built-in **Actor Attachment** system.
+- **Parent:** The Vehicle Chassis (The Template car).
+- **Children:** Refrigerator doors, stop signs, scrap metal blocks.
+- **Logic:** `AttachActorToComponent` using standard sockets.
 
-## 3. The Chaos Vehicle Setup
-- **Suspension:** Set to "Stiff & Responsive." We want the cars to feel grounded but capable of huge jumps.
-- **Tire Friction:** High grip on most surfaces. Drifting should be a conscious player choice, not a constant struggle.
-- **Simplified Aero:** Constant top speed caps based on Engine power, ignoring complex drag math.
+## 3. Handling Mass & Balance (Unreal Way)
+Unreal Engine handles mass automatically based on the physics asset of the attached parts.
+- **To Balance:** If the car is too heavy or tips over, we simply adjust the `Mass` override or the `Center of Mass Offset` in the vehicle's Details panel.
+- **Resizing:** When we scale a part (e.g., a stop sign), Unreal automatically scales the **Collision Hull** and adjusts the mass accordingly.
 
-## 4. Competitive Combat Physics
-- **Impact Impulses:** When a cannon hits a car, it should *push* the car. This adds "Juice" and allows for tactical knockbacks.
-- **Part Detachment:** Parts fly off with exaggerated velocity when destroyed. It should look spectacular.
-- **Fixed Turret Stability:** Weapons do not affect vehicle physics when they rotate or fire, unless we explicitly want a "Recoil" mechanic for heavy cannons.
-
-## 5. AI Prompting for Feel
-*"Adjust the vehicle's turn rate to feel snappier. Increase the tire friction by 20% and lower the center of mass so it feels like it's glued to the road during high-speed combat."*
+## 4. Competitive Logic
+Since we are using the engine-native physics:
+- **Fair Play:** Use the built-in **Chaos Collision** events to determine when a part should break off.
+- **Optimization:** Use **Nanite** for all junk parts so performance stays high even with 100+ attached objects.
