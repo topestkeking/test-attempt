@@ -1,6 +1,0 @@
-{
-  "name": "Handmade Image Editor",
-  "description": "Sketch custom drawings or upload hand-made images, and edit them using visual text prompts with Gemini's advanced image-editing models.",
-  "requestFramePermissions": [],
-  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
-}
