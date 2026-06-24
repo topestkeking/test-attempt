@@ -44,4 +44,4 @@ To allow Claude Code or other agents to talk to UE 5.8:
 3. Open Unreal Engine 5.8 and create a **Blank C++ Project**. If it compiles and opens, you are ready.
 
 ---
-**Next Step:** Proceed to **[PROJECT_BOOTSTRAP_GUIDE.md](PROJECT_BOOTSTRAP_GUIDE.md)** to create the actual game project.
+**Next Step:** Proceed to **[01_HUMAN_GUIDE.md](01_HUMAN_GUIDE.md)** to understand the workflow, then to **[PROJECT_BOOTSTRAP_GUIDE.md](PROJECT_BOOTSTRAP_GUIDE.md)** to create the actual game project.

@@ -42,4 +42,4 @@ Once the editor opens, enable these:
 If you ever want to "Edit the binaries" (or rather, have the AI do it for you) to optimize physics for 16 players, you *need* a C++ project. It is much easier to start with C++ than to try and convert a Blueprint project later.
 
 ---
-**Next Step:** Connect Claude via the instructions in `MCP_AI_Setup_Guide.md` and tell it: *"I have started the Vehicle C++ project. Help me define the base attachment logic for modular blocks."*
+**Next Step:** Connect Claude via the instructions in **[02_AGENT_WORKFLOW.md](02_AGENT_WORKFLOW.md)** and tell it: *"I have started the Vehicle C++ project. Refer to PROJECT_MEMORY/01_PROJECT_STATE.md and help me define the base attachment logic for modular blocks."*

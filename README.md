@@ -4,14 +4,15 @@ This repository contains the full development framework, technical architecture,
 
 ## 🚀 Getting Started
 
-If you are joining the development team, follow this order:
-1. **[TECHNICAL_INSTALLATION_CHECKLIST.md](TECHNICAL_INSTALLATION_CHECKLIST.md)**: Install the required software and drivers.
-2. **[PROJECT_BOOTSTRAP_GUIDE.md](PROJECT_BOOTSTRAP_GUIDE.md)**: Create the actual Unreal Engine project.
-3. **[DEVELOPER_HANDBOOK.md](DEVELOPER_HANDBOOK.md)**: Learn the workflow and start building.
+If you are joining the development team (Human or AI), follow this order:
+1. **[PROJECT_MEMORY/00_AGENT_RULES.md](PROJECT_MEMORY/00_AGENT_RULES.md)**: Read the governance and budget rules.
+2. **[TECHNICAL_INSTALLATION_CHECKLIST.md](TECHNICAL_INSTALLATION_CHECKLIST.md)**: Install the required software and drivers.
+3. **[PROJECT_BOOTSTRAP_GUIDE.md](PROJECT_BOOTSTRAP_GUIDE.md)**: Create the actual Unreal Engine project.
+4. **[DEVELOPER_HANDBOOK.md](DEVELOPER_HANDBOOK.md)**: Learn the AI-Human workflow and start building.
 
 ## 🗺️ Documentation Overview
 
-For a full list of all guides and the "headspace" required for each, see the **[DOCUMENTATION_MAP.md](DOCUMENTATION_MAP.md)**.
+For a full list of all guides, agent contracts, and the "headspace" required for each, see the **[DOCUMENTATION_MAP.md](DOCUMENTATION_MAP.md)**.
 
 ## 📂 Key Documentation
 
